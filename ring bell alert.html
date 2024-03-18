@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Events</title>
+  </head>
+  <body>
+    <img
+      src="https://miro.medium.com/max/1400/1*mdcu3Ku9r44HMtraHUqu5g.jpeg"
+      alt=""
+    />
+    <script>
+      document.querySelector('img').addEventListener('click', function(event) {
+  event.preventDefault();
+  const confirmation = confirm('The website you are going to visit may harm your computer, do you still want to redirect?');
+  if (confirmation) {
+    window.location.href = 'https://www.example.com'; // Replace with the actual website URL
+  }
+});
+      document.querySelector('img').addEventListener('click', function(event) {
+        event.preventDefault();
+        const confirmation = confirm('The website you are going to visit may harm your computer, do you still want to redirect?');
+        if (confirmation) {
+          window.location.href = 'https://www.example.com'; // Replace with the actual website URL
+        }
+      });
+    </script>
+  </body>
+</html>
