@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Throw Dice</title>
+  <style>
+    .dice {
+      width: 100px;
+      height: 100px;
+      border: 2px solid black;
+      display: inline-block;
+      margin: 10px;
+      text-align: center;
+      line-height: 100px;
+      font-size: 24px;
+    }
+    #winner {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="dice" id="member-1">-</div>
+  <div class="dice" id="member-2">-</div>
+  <div class="dice" id="member-3">-</div>
+  <button id="roll" onclick="rollDice()">ROLL THE DICE</button>
+  <div id="winner"></div>
+
+  <script>
+    function rollDice() {
+      var dice1 = Math.floor(Math.random() * 6) + 1;
+      var dice2 = Math.floor(Math.random() * 6) + 1;
+      var dice3 = Math.floor(Math.random() * 6) + 1;
+
+      document.getElementById('member-1').innerText = dice1;
+      document.getElementById('member-2').innerText = dice2;
+      document.getElementById('member-3').innerText = dice3;
+
+      var winnerDiv = document.getElementById('winner');
+      var winner;
+
+      if (dice1 > dice2 && dice1 > dice3) {
+        winner = "Member A";
+        document.getElementById('member-1').style.backgroundColor = "green";
+        document.getElementById('member-2').style.backgroundColor = "yellow";
+        document.getElementById('member-3').style.backgroundColor = "red";
+      } else if (dice2 > dice1 && dice2 > dice3) {
+        winner = "Member B";
+        document.getElementById('member-2').style.backgroundColor = "green";
+        document.getElementById('member-1').style.backgroundColor = "yellow";
+        document.getElementById('member-3').style.backgroundColor = "red";
+      } else if (dice3 > dice1 && dice3 > dice2) {
+        winner = "Member C";
+        document.getElementById('member-3').style.backgroundColor = "green";
+        document.getElementById('member-1').style.backgroundColor = "yellow";
+        document.getElementById('member-2').style.backgroundColor = "red";
+      } else {
+        winner = "It's a draw!";
+        document.getElementById('member-1').style.backgroundColor = "blue";
+        document.getElementById('member-2').style.backgroundColor = "blue";
+        document.getElementById('member-3').style.backgroundColor = "blue";
+      }
+
+      winnerDiv.innerText = "Winner: " + winner;
+    }
+  </script>
+</body>
+</html>
