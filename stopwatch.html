@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stopwatch</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #timer {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    button {
+        font-size: 1rem;
+        margin: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div id="timer">00:00:00</div>
+<button id="startBtn" onclick="startStopwatch()">Start</button>
+<button id="pauseBtn" onclick="pauseStopwatch()">Pause</button>
+<button id="resetBtn" onclick="resetStopwatch()">Reset</button>
+
+<script>
+    let timer;
+    let seconds = 0;
+    let isRunning = false;
+
+    function startStopwatch() {
+        if (!isRunning) {
+            isRunning = true;
+            timer = setInterval(updateTime, 1000);
+            document.getElementById("startBtn").disabled = true;
+        }
+    }
+
+    function pauseStopwatch() {
+        if (isRunning) {
+            clearInterval(timer);
+            isRunning = false;
+            document.getElementById("startBtn").disabled = false;
+        }
+    }
+
+    function resetStopwatch() {
+        clearInterval(timer);
+        isRunning = false;
+        seconds = 0;
+        document.getElementById("timer").textContent = "00:00:00";
+        document.getElementById("startBtn").disabled = false;
+    }
+
+    function updateTime() {
+        seconds++;
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const remainingSeconds = seconds % 60;
+
+        const displayHours = hours < 10 ? "0" + hours : hours;
+        const displayMinutes = minutes < 10 ? "0" + minutes : minutes;
+        const displaySeconds = remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds;
+
+        let displayTime = displayMinutes + ":" + displaySeconds;
+        if (hours > 0) {
+            displayTime = displayHours + ":" + displayTime;
+        }
+
+        document.getElementById("timer").textContent = displayTime;
+    }
+</script>
+
+</body>
+</html>
